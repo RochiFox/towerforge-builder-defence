@@ -288,7 +288,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b8b985bb9859cf47b5d5d59c83838e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  harvesterPrefab: {fileID: 3794262642540682423, guid: 08994f83a0e8ba742aa394b2479ef11c, type: 3}
+  buildingType: {fileID: 11400000, guid: 93baab5fa2eff9d41a0eca4ea0bb2bf2, type: 2}
 --- !u!4 &643160608
 Transform:
   m_ObjectHideFlags: 0
@@ -315,7 +315,7 @@ GameObject:
   - component: {fileID: 689789001}
   - component: {fileID: 689789000}
   m_Layer: 0
-  m_Name: Light 2D
+  m_Name: Global Light 2D
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
