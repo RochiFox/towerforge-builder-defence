@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "ScriptableObjects/BuildingType")]
+[CreateAssetMenu(menuName = "Scriptable Objects/Building Type")]
 public class BuildingType : ScriptableObject
 {
     public string nameString;

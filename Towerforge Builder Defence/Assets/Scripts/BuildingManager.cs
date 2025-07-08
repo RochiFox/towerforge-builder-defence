@@ -6,12 +6,15 @@ public class BuildingManager : MonoBehaviour
     private BuildingType buildingType;
     private BuildingTypeList buildingTypeList;
 
+    private void Awake()
+    {
+        buildingTypeList = Resources.Load<BuildingTypeList>(nameof(BuildingTypeList));
+        buildingType = buildingTypeList.list[0];
+    }
+
     private void Start()
     {
         mainCamera = Camera.main;
-
-        buildingTypeList = Resources.Load<BuildingTypeList>(nameof(BuildingTypeList));
-        buildingType = buildingTypeList.list[0];
     }
 
     private void Update()
