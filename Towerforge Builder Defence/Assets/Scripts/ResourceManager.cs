@@ -3,10 +3,13 @@ using UnityEngine;
 
 public class ResourceManager : MonoBehaviour
 {
+    public static ResourceManager Instance { get; private set; }
     private Dictionary<ResourceType, int> resourceAmounDictionary;
 
     private void Awake()
     {
+        Instance = this;
+
         resourceAmounDictionary = new Dictionary<ResourceType, int>();
 
         ResourceTypeList resourceTypeList = Resources.Load<ResourceTypeList>(typeof(ResourceTypeList).Name);
@@ -40,5 +43,6 @@ public class ResourceManager : MonoBehaviour
     public void AddResource(ResourceType resourceType, int amount)
     {
         resourceAmounDictionary[resourceType] += amount;
+        TestLogResourceAmountDictionary();
     }
 }
