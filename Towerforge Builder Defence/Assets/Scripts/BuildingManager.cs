@@ -1,9 +1,17 @@
+using System;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
 public class BuildingManager : MonoBehaviour
 {
     public static BuildingManager Instance { get; private set; }
+
+    public event EventHandler<OnActiveBuildingTypeChangedEventArgs> OnActiveBuildingTypeChanged;
+
+    public class OnActiveBuildingTypeChangedEventArgs : EventArgs
+    {
+        public BuildingType activeBuildingType;
+    }
 
     private Camera mainCamera;
     private BuildingTypeList buildingTypeList;
@@ -25,20 +33,13 @@ public class BuildingManager : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0) && !EventSystem.current.IsPointerOverGameObject())
             if (activeBuildingType)
-                Instantiate(activeBuildingType.prefab, GetMouseWorldPosition(), Quaternion.identity);
-    }
-
-    private Vector3 GetMouseWorldPosition()
-    {
-        Vector3 mouseWorldPosition = mainCamera.ScreenToWorldPoint(Input.mousePosition);
-        mouseWorldPosition.z = 0f;
-
-        return mouseWorldPosition;
+                Instantiate(activeBuildingType.prefab, UtilsClass.GetMouseWorldPosition(), Quaternion.identity);
     }
 
     public void SetActiveBuildingType(BuildingType buildingType)
     {
         activeBuildingType = buildingType;
+        OnActiveBuildingTypeChanged?.Invoke(this, new OnActiveBuildingTypeChangedEventArgs { activeBuildingType = activeBuildingType });
     }
 
     public BuildingType GetActiveBuildingType()
