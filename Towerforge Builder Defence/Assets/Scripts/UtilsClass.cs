@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public static class UtilsClass
@@ -16,4 +14,6 @@ public static class UtilsClass
 
         return mouseWorldPosition;
     }
+
+    public static Vector3 GetRandomDirection() => new Vector3(Random.Range(-1f, 1f), Random.Range(-1f, 1f)).normalized;
 }
