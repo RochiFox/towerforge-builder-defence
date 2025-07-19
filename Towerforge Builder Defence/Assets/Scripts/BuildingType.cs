@@ -5,6 +5,7 @@ public class BuildingType : ScriptableObject
 {
     public string nameString;
     public Transform prefab;
+    public bool hasResourceGeneratorData;
     public ResourceGeneratorData resourceGeneratorData;
     public Sprite sprite;
     public float minConstructionRadius;
@@ -17,7 +18,8 @@ public class BuildingType : ScriptableObject
 
         foreach (ResourceAmount resourceAmount in constructionResourceCostArray)
         {
-            str += "<color=#" + resourceAmount.resourceType.colorHex + ">" + resourceAmount.resourceType.nameShort + ": " + resourceAmount.amount + "</color> ";
+            str += "<color=#" + resourceAmount.resourceType.colorHex + ">" + resourceAmount.resourceType.nameShort +
+                ": " + resourceAmount.amount + "</color> ";
         }
 
         return str;

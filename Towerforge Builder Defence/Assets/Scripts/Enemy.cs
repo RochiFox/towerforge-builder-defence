@@ -2,19 +2,34 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
+    public static Enemy Create(Vector3 position)
+    {
+        Transform Enemy = Resources.Load<Transform>("Enemy");
+
+        Transform enemyTransform = Instantiate(Enemy, position, Quaternion.identity);
+
+        Enemy enemy = enemyTransform.GetComponent<Enemy>();
+
+        return enemy;
+    }
+
     private Transform targetTransform;
     private Rigidbody2D rigidbody2d;
+    private HealthSystem healthSystem;
     private float lookForTargetTimer;
     private float lookForTargetTimerMax = 0.2f;
 
     private void Awake()
     {
         rigidbody2d = GetComponent<Rigidbody2D>();
+        healthSystem = GetComponent<HealthSystem>();
     }
 
     private void Start()
     {
         targetTransform = BuildingManager.Instance.GetHQBuilding().transform;
+
+        healthSystem.OnDied += HealthSystemOnDied;
 
         lookForTargetTimer = Random.Range(0f, lookForTargetTimerMax);
     }
@@ -25,15 +40,9 @@ public class Enemy : MonoBehaviour
         HandleTargeting();
     }
 
-    public static Enemy Create(Vector3 position)
+    private void HealthSystemOnDied(object sender, System.EventArgs e)
     {
-        Transform Enemy = Resources.Load<Transform>("Enemy");
-
-        Transform enemyTransform = Instantiate(Enemy, position, Quaternion.identity);
-
-        Enemy enemy = enemyTransform.GetComponent<Enemy>();
-
-        return enemy;
+        Destroy(gameObject);
     }
 
     private void LookForTargets()
@@ -97,7 +106,7 @@ public class Enemy : MonoBehaviour
 
         if (building)
         {
-            HealthSystem healthSystem = building.GetComponent<HealthSystem>();
+            healthSystem = building.GetComponent<HealthSystem>();
             healthSystem.Damage(10);
 
             Destroy(gameObject);
