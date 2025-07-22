@@ -38,7 +38,6 @@ public class BuildingConstruction : MonoBehaviour
 
         if (constructionTimer <= 0f)
         {
-            Debug.Log("ding");
             Instantiate(buildingType.prefab, transform.position, Quaternion.identity);
             Destroy(gameObject);
         }
