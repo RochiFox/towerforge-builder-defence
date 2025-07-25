@@ -27,7 +27,8 @@ public class Enemy : MonoBehaviour
 
     private void Start()
     {
-        targetTransform = BuildingManager.Instance.GetHQBuilding().transform;
+        if (BuildingManager.Instance.GetHQBuilding() != null)
+            targetTransform = BuildingManager.Instance.GetHQBuilding().transform;
 
         healthSystem.OnDied += HealthSystemOnDied;
 
@@ -72,7 +73,8 @@ public class Enemy : MonoBehaviour
 
         if (targetTransform == null)
         {
-            targetTransform = BuildingManager.Instance.GetHQBuilding().transform;
+            if (BuildingManager.Instance.GetHQBuilding() != null)
+                targetTransform = BuildingManager.Instance.GetHQBuilding().transform;
         }
     }
 
