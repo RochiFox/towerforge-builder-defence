@@ -30,6 +30,7 @@ public class Enemy : MonoBehaviour
         if (BuildingManager.Instance.GetHQBuilding() != null)
             targetTransform = BuildingManager.Instance.GetHQBuilding().transform;
 
+        healthSystem.OnDamage += HealthSystemOnDamage;
         healthSystem.OnDied += HealthSystemOnDied;
 
         lookForTargetTimer = Random.Range(0f, lookForTargetTimerMax);
@@ -41,9 +42,16 @@ public class Enemy : MonoBehaviour
         HandleTargeting();
     }
 
+    private void HealthSystemOnDamage(object sender, System.EventArgs e)
+    {
+        SoundManager.Instance.PlaySound(SoundManager.Sound.EnemyHit);
+    }
+
+
     private void HealthSystemOnDied(object sender, System.EventArgs e)
     {
         Destroy(gameObject);
+        SoundManager.Instance.PlaySound(SoundManager.Sound.EnemyDie);
     }
 
     private void LookForTargets()
