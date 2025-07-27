@@ -41,7 +41,8 @@ public class OptionsUI : MonoBehaviour
 
         transform.Find("Main Menu Button").GetComponent<Button>().onClick.AddListener(() =>
         {
-
+            Time.timeScale = 1f;
+            GameSceneManager.Load(GameSceneManager.Scene.MainMenuScene);
         });
     }
 
