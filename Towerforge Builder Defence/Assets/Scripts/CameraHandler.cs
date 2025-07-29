@@ -3,11 +3,19 @@ using UnityEngine;
 
 public class CameraHandler : MonoBehaviour
 {
+    public static CameraHandler Instance { get; private set; }
+
     [SerializeField] private CinemachineVirtualCamera cinemachineVirtualCamera;
     [SerializeField] private PolygonCollider2D cameraBoundsCollider2D;
 
     private float orthographicSize;
     private float targetOrthographicSize;
+    private bool edgeScrolling;
+
+    void Awake()
+    {
+        Instance = this;
+    }
 
     private void Start()
     {
@@ -25,6 +33,23 @@ public class CameraHandler : MonoBehaviour
     {
         float x = Input.GetAxisRaw("Horizontal");
         float y = Input.GetAxisRaw("Vertical");
+
+        if (edgeScrolling)
+        {
+            float edgeScrollingSize = 30f;
+
+            if (Input.mousePosition.x > Screen.width - edgeScrollingSize)
+                x = 1f;
+
+            if (Input.mousePosition.x < edgeScrollingSize)
+                x = -1f;
+
+            if (Input.mousePosition.y > Screen.height - edgeScrollingSize)
+                y = 1f;
+
+            if (Input.mousePosition.y < edgeScrollingSize)
+                y = -1f;
+        }
 
         Vector3 moveDirection = new Vector3(x, y).normalized;
         float moveSpeed = 30f;
@@ -49,4 +74,11 @@ public class CameraHandler : MonoBehaviour
 
         cinemachineVirtualCamera.m_Lens.OrthographicSize = orthographicSize;
     }
+
+    public void SetEdgeScrolling(bool edgeScrolling)
+    {
+        this.edgeScrolling = edgeScrolling;
+    }
+
+    public bool GetEdgeScrolling() => edgeScrolling;
 }
