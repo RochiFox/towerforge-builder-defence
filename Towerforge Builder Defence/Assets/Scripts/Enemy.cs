@@ -119,8 +119,7 @@ public class Enemy : MonoBehaviour
         {
             healthSystem = building.GetComponent<HealthSystem>();
             healthSystem.Damage(10);
-            this.healthSystem.Damage(999);
-            // Destroy(gameObject);
+            Destroy(gameObject);
         }
     }
 }
