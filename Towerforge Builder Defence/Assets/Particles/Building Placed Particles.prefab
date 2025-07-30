@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6314537111679933592}
   - component: {fileID: 8632199879416378032}
   m_Layer: 0
-  m_Name: pfBuildingPlacedParticles
+  m_Name: Building Placed Particles
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
