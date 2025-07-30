@@ -253,7 +253,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f492f78e4773ee54495ad896cfdb633c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shootTimerMax: 0.3
+  shootTimerMax: 0.2
 --- !u!114 &-5461922235356326360
 MonoBehaviour:
   m_ObjectHideFlags: 0
