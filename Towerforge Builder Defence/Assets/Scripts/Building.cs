@@ -44,7 +44,7 @@ public class Building : MonoBehaviour
 
     private void HealthSystemOnDied(object sender, System.EventArgs e)
     {
-        Instantiate(Resources.Load<Transform>("Building Destroyed Particles"), transform.position, Quaternion.identity);
+        Instantiate(GameAssets.Instance.buildingDestroyedParticles, transform.position, Quaternion.identity);
         SoundManager.Instance.PlaySound(SoundManager.Sound.BuildingDestroyed);
         CinemachineShake.Instance.ShakeCamera(10f, 0.2f);
         ChromaticAberrationEffect.Instance.SetWeight(1f);
