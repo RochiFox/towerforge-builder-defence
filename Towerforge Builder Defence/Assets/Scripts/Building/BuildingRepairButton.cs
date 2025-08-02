@@ -24,7 +24,14 @@ public class BuildingRepairButton : MonoBehaviour
             }
             else
             {
-                TooltipUI.Instance.Show("Cannot afford repair cost!", new TooltipUI.TooltipTimer { timer = 2f });
+                string tooltipMessage = "Cannot afford repair cost: ";
+
+                foreach (ResourceAmount resourceAmount in resourceAmountCost)
+                {
+                    tooltipMessage += $"{resourceAmount.resourceType.name} {resourceAmount.amount}";
+                }
+
+                TooltipUI.Instance.Show(tooltipMessage, new TooltipUI.TooltipTimer { timer = 2f });
             }
         });
     }

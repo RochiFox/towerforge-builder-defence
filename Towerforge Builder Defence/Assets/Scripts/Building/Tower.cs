@@ -8,7 +8,7 @@ public class Tower : MonoBehaviour
     private Enemy targetEnemy;
     private float lookForTargetTimer;
     private float lookForTargetTimerMax = 0.2f;
-    private float targetMaxRadius = 20f;
+    private float targetMaxRadius = 30f;
 
     private Vector3 projectileSpawnPosition;
 
