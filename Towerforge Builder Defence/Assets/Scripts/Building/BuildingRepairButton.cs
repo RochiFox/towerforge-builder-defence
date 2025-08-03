@@ -28,7 +28,8 @@ public class BuildingRepairButton : MonoBehaviour
 
                 foreach (ResourceAmount resourceAmount in resourceAmountCost)
                 {
-                    tooltipMessage += $"{resourceAmount.resourceType.name} {resourceAmount.amount}";
+                    int playerAmount = ResourceManager.Instance.GetResourceAmount(resourceAmount.resourceType);
+                    tooltipMessage += $"{resourceAmount.resourceType.name}: {playerAmount}/{resourceAmount.amount}";
                 }
 
                 TooltipUI.Instance.Show(tooltipMessage, new TooltipUI.TooltipTimer { timer = 2f });
